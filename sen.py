@@ -20,14 +20,14 @@ print('connected')
 s.send('filename+SEPARATOR+filesize'.encode())
 
 #tqdm starts here
-bar = tqdm.tqdm(range(filesize), "Sending "+filename".", unit="B", unit_scale=True, unit_divisor=1024)
-with open(filename 'rb') as f:
-	for _ in progress:
+bar = tqdm.tqdm(range(filesize), "Sending "+filename, unit="B", unit_scale=True, unit_divisor=1024)
+with open(filename, "rb") as f:
+	for _ in bar:
 		bytes_read = f.read(BUFFER_SIZE)
 		if not bytes_read:
 			break
 		s.sendall(bytes_read)
-		progress.update(len(bytes_read))
+		bar.update(len(bytes_read))
 s.close()
 #create the socket
 '''
