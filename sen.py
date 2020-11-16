@@ -17,8 +17,8 @@ s = socket.socket()
 s.connect((host, int(port)))
 print('You are connecting to '+host+port)
 print('connected')
-s.send('filename+SEPARATOR+filesize'.encode())
-
+#s.send('filename+SEPARATOR+filesize'.encode())
+s.send(f"{filename}{SEPARATOR}{filesize}".encode())
 #tqdm starts here
 bar = tqdm.tqdm(range(filesize), "Sending "+filename, unit="B", unit_scale=True, unit_divisor=1024)
 with open(filename, "rb") as f:
