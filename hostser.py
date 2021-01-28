@@ -4,7 +4,7 @@ clients = {}
 addresses = {}
 
 HOST = ''
-PORT = 33000
+PORT = 5001
 BUFSIZ = 4096
 ADDR = (HOST, PORT)
 SERVER = socket(AF_INET, SOCK_STREAM)
@@ -14,11 +14,11 @@ def accept_connection():
 	while True:
 		client, client_address = SERVER.accept()
 		print("%s:%s has connected" % client_address)
-		client.send(bytes('You have connected succesfuly, type name and enter'))
+		client.send(bytes('You have connected succesfuly, type name and enter', 'utf8'))
 		addresses[client] = client_address
-		Thread(target=handle_client, args=(client)).start()
+		Thread(target=handle_client, args=(client,)).start()
 def handle_client(client):
-	name = client.recv(BUFSIZ).decode(utf8)
+	name = client.recv(BUFSIZ).decode('utf8')
 	welcome = 'hello %s to close the program type {quit} ' % name
 	client.send(bytes(welcome, 'utf8'))
 	msg = "%s has joined the chat!" % name
@@ -49,13 +49,20 @@ def handle_client(client):
 def broadcast(msg, prefix=''):
 	for sock in clients:
 		sock.send(bytes(prefix, 'utf8')+msg)
-	if __name__ == '__main__':
-		SERVER.listen(5)
-		ACCEPT_THREAD = Thread(target=accept_incoming_connections)
-		ACCEPT_THREAD.start()  # Starts the infinite loop.
-		ACCEPT_THREAD.join()
-		SERVER.close()
+if __name__ == '__main__':
+	SERVER.listen(5)
+	ACCEPT_THREAD = Thread(target=accept_connection)
+	ACCEPT_THREAD.start()  # Starts the infinite loop.
+	ACCEPT_THREAD.join()
+	SERVER.close()
     	
+
+
+
+    	
+
+
+
 
 
 
