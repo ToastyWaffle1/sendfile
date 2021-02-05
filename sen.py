@@ -32,7 +32,7 @@ s.close()
 #create the socket
 '''
 try:
-	s = socket.socket'
+	s = socket.socket' 
 	
 	s.connect((host, port))
 	print('You are connecting to '+host,port)
