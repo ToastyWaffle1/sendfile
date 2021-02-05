@@ -31,4 +31,4 @@ with open(filename, 'wb') as f:
 		bar.update(len(bytes_read))
 client_socket.close()
 s.close()
-
+ 
