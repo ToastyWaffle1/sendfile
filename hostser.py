@@ -49,23 +49,10 @@ def handle_client(client):
 def broadcast(msg, prefix=''):
 	for sock in clients:
 		sock.send(bytes(prefix, 'utf8')+msg)
+
 if __name__ == '__main__':
 	SERVER.listen(5)
 	ACCEPT_THREAD = Thread(target=accept_connection)
 	ACCEPT_THREAD.start()  # Starts the infinite loop.
 	ACCEPT_THREAD.join()
 	SERVER.close()
-    	
-
-
-
-    	
-
-
-
-
-
-
-    	
-
-
